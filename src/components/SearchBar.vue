@@ -1,5 +1,5 @@
 <template>
- <div className="search-bar">
+ <div class="search-bar">
     <input v-model="term" v-on:keydown="inputTermChange"/>
   </div>
 </template>
