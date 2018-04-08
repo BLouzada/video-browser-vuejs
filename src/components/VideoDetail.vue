@@ -1,14 +1,14 @@
 
 <template>
 <div>
-  <h1 v-if="isEmpty(video)">Loading..</h1>
-  <div v-if="!isEmpty(video)" className="video-detail col-md-8">
-      <div className="embed-responsive embed-responsive-16by9">
-        <iframe id="youtube-video-iframe" title="youtube embed video player" className="embed-responsive-item" :src="'https://www.youtube.com/embed/' + video.id.videoId"/>
+  <h1 id="no-video" v-if="isEmpty(video)">Loading...</h1>
+  <div v-if="!isEmpty(video)" class="video-detail col-md-8">
+      <div class="embed-responsive embed-responsive-16by9">
+        <iframe id="youtube-video-iframe" title="youtube embed video player" class="embed-responsive-item" :src="'https://www.youtube.com/embed/' + video.id.videoId"/>
       </div>
-      <div className="details">
-        <div className="details-title">{{ video.snippet.title }}</div>
-        <div className="details-description">{{ video.snippet.description }}</div>
+      <div class="details">
+        <div class="details-title">{{ video.snippet.title }}</div>
+        <div class="details-description">{{ video.snippet.description }}</div>
       </div>
   </div>
 </div>
