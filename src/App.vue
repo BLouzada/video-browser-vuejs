@@ -1,36 +1,54 @@
 <template>
   <div id="app">
-    <img src="./assets/logo.png">
     <SearchBar @termChange="handleTerm"/>
+    <VideoDetail :video="selectedVideo"/>
   </div>
 </template>
 
 <script>
 import SearchBar from './components/SearchBar'
-import YTSearch from 'youtube-api-search'
+import VideoDetail from './components/VideoDetail'
+import axios from 'axios'
 const API_KEY = 'AIzaSyCbwLwNN-h4LUgIALLOY38_xaQj0Nq_i4Q'
 
-const searchYtVideos = function (term) {
-  return YTSearch({ key: API_KEY, term }, function (videos) {
-    return videos
-  })
-}
-searchYtVideos('surfboards')
+searchYoutubeVideos('surfboards').then(videos => {
+  this.videos = videos
+  this.selectedVideo = this.videos[0]
+  console.log('this.selectedVideo', this.selectedVideo)
+})
+
 export default {
   name: 'App',
   data () {
     return {
-      videos: []
+      videos: [],
+      selectedVideo: {}
     }
   },
   components: {
-    SearchBar
+    SearchBar,
+    VideoDetail
   },
   methods: {
     handleTerm: function (payload) {
-      this.videos = searchYtVideos(payload.term)
+      searchYoutubeVideos(payload.term)
+        .then(videos => {
+          this.videos = videos
+          this.selectedVideo = this.videos[0]
+        })
     }
   }
+}
+function searchYoutubeVideos (term) {
+  var ROOT_URL = 'https://www.googleapis.com/youtube/v3/search'
+  var params = {
+    part: 'snippet',
+    key: API_KEY,
+    q: term,
+    type: 'video'
+  }
+  return axios.get(ROOT_URL, { params: params })
+    .then(response => response.data.items)
 }
 </script>
 
