@@ -1,6 +1,9 @@
-# video-browser-vue
+## Video browser
 
-> A Vue.js project
+App para buscar e visualizar videos do YouTube.
+
+Tecnologias: 
+VueJS
 
 ## Build Setup
 
@@ -23,5 +26,3 @@ npm run unit
 # run all tests
 npm test
 ```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
