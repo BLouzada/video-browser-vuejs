@@ -17,11 +17,20 @@ export default {
     inputTermChange: _.debounce(function (event) {
       this.$emit('termChange', { term: this.term })
     }, 300)
+  },
+  beforeMount () {
+    this.$emit('termChange', { term: this.term })
   }
-
 }
 </script>
 
 <style scoped>
+.search-bar {
+  margin: 20px;
+  text-align: center;
+}
 
+.search-bar input {
+  width: 75%;
+}
 </style>

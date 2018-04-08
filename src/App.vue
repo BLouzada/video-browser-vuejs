@@ -2,20 +2,16 @@
   <div id="app">
     <SearchBar @termChange="handleTerm"/>
     <VideoDetail :video="selectedVideo"/>
+    <VideoList :videos="videos" :selectedVideo="selectedVideo" @videoSelected="setVideoSelected"/>
   </div>
 </template>
 
 <script>
 import SearchBar from './components/SearchBar'
 import VideoDetail from './components/VideoDetail'
+import VideoList from './components/VideoList'
 import axios from 'axios'
 const API_KEY = 'AIzaSyCbwLwNN-h4LUgIALLOY38_xaQj0Nq_i4Q'
-
-searchYoutubeVideos('surfboards').then(videos => {
-  this.videos = videos
-  this.selectedVideo = this.videos[0]
-  console.log('this.selectedVideo', this.selectedVideo)
-})
 
 export default {
   name: 'App',
@@ -27,15 +23,19 @@ export default {
   },
   components: {
     SearchBar,
-    VideoDetail
+    VideoDetail,
+    VideoList
   },
   methods: {
     handleTerm: function (payload) {
       searchYoutubeVideos(payload.term)
         .then(videos => {
+          this.selectedVideo = videos[0]
           this.videos = videos
-          this.selectedVideo = this.videos[0]
         })
+    },
+    setVideoSelected: function (payload) {
+      this.selectedVideo = payload.video
     }
   }
 }
