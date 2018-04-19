@@ -10,7 +10,7 @@ export default {
   name: 'SearchBar',
   data () {
     return {
-      term: 'surfboards'
+      term: 'reactjs'
     }
   },
   methods: {
