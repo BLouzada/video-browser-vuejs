@@ -28,4 +28,7 @@ export default {
 li{
   cursor: pointer;
 }
+li:hover {
+  background-color: #eee;
+}
 </style>
